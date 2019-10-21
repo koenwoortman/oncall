@@ -19,5 +19,8 @@ Gem::Specification.new do |s|
 
   s.required_ruby_version = '>= 2.3'
 
+  s.add_dependency 'json', '2.2.0'
+  s.add_dependency 'json-schema', '2.8.1'
+
   s.add_development_dependency 'sinatra', '2.0.7'
 end

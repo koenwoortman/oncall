@@ -1,0 +1,3 @@
+develop:
+  domain: localhost
+  port: 4567

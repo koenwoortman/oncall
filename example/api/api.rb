@@ -1,5 +1,6 @@
 require 'sinatra'
+require 'json'
 
 get '/' do
-  "Hello World!"
+  { foo: 'bar' }.to_json
 end
