@@ -3,7 +3,6 @@ require File.join(File.dirname(__FILE__), 'lib', 'oncall', 'version')
 Gem::Specification.new do |s|
   s.name         = 'oncall'
   s.version      = Oncall::VERSION
-  s.date         = '2019-10-18'
   s.license      = 'MIT'
   s.summary      = "oncall-#{Oncall::VERSION}"
   s.description  = ""

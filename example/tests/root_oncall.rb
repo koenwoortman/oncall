@@ -1,4 +1,4 @@
-Oncall.endpoint '/' do
+Endpoint.define '/' do
   schema = {
     "type" => "object",
     "required" => ["foo"],
@@ -7,7 +7,7 @@ Oncall.endpoint '/' do
     }
   }
 
-  get 'Should comply with JSON schema' do |response|
-    response.validate schema
+  get 'Should comply with JSON schema' do
+    validate schema
   end
 end
