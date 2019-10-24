@@ -11,8 +11,6 @@ Options:
   --help      Display this help message
     EOF
 
-    PATTERN = '**{,/*/**}/*_oncall.rb'
-
     def invoke
       options = parse_options
 

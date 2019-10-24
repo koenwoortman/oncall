@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Endpoint
   def initialize(route)
     @route = route
@@ -10,17 +12,17 @@ class Endpoint
     instance_eval File.read(filename)
   end
 
-  def Endpoint.run(filename)
+  def self.run(filename)
     Endpoint.new('').parse(filename)
   end
 
-  def Endpoint.define(route, &block)
+  def self.define(route, &block)
     new(route).instance_eval(&block)
   end
 
   private
 
-  def get(description, &block)
+  def get(_description, &block)
     instance_eval(&block)
   end
 
@@ -32,7 +34,6 @@ end
 
 module Oncall
   class Runner
-
     DEFAULT_PATTERN = '**{,/*/**}/*_oncall.rb'
 
     def initialize
@@ -41,8 +42,8 @@ module Oncall
 
     def run
       begin
-        config = YAML.load_file('oncall.yml')
-      rescue
+        YAML.load_file('oncall.yml')
+      rescue StandardError
         puts 'Cannot load oncall.yml'
         exit 1
       end
