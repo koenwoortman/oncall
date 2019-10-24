@@ -1,2 +1,2 @@
-Endpoint.define '/404' do
+Endpoint.get '/404' do
 end

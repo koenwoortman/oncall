@@ -1,15 +1,15 @@
 Endpoint.get '/' do
-  set_header 'Content-Type' => 'application/json'
-
-  schema = {
-    'type' => 'object',
-    'required' => ['foo'],
-    'properties' => {
-      'foo' => { 'type' => 'string' }
-    }
-  }
+  header 'Content-Type' => 'application/json'
 
   body 'should comply with JSON schema' do
+    schema = {
+      'type' => 'object',
+      'required' => ['foo'],
+      'properties' => {
+        'foo' => { 'type' => 'string' }
+      }
+    }
+
     matches schema
   end
 

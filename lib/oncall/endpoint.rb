@@ -2,34 +2,39 @@ module Oncall
   class Endpoint
     extend Oncall::DSL
 
-    def initialize(route)
-      @route = route
-      @config = {
-        'develop' => { 'domain' => 'localhost', 'port' => 4567 }
-      }
+    def initialize
     end
 
-    def parse(filename)
-      instance_eval File.read(filename)
+    def run(file)
+      instance_eval File.read(file)
     end
 
-    def self.run(filename)
-      Endpoint.new('').parse(filename)
-    end
-
-    def self.define(route, &block)
-      new(route).instance_eval(&block)
-    end
-
-    def self.get(_description, &block)
+    def self.get(endpoint, &block)
+      domain = 'localhost'
+      port = 4567
+      @response = Net::HTTP.get_response(domain, endpoint, port)
       instance_eval(&block)
     end
 
-    private
+    def self.header(header)
+      puts header
+    end
 
-    def validate(schema)
-      response = Net::HTTP.get_response(@config['develop']['domain'], @route, @config['develop']['port'])
-      puts JSON::Validator.validate(schema, response.body)
+    def self.body(header, &block)
+      puts header
+      instance_eval(&block)
+    end
+
+    def self.status(header)
+      puts header
+    end
+
+    def self.profiler(header)
+      puts header
+    end
+
+    def self.matches(schema)
+      result = JSON::Validator.validate(schema, @response.body)
     end
   end
 end
