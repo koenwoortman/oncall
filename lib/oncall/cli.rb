@@ -4,11 +4,11 @@ module Oncall
   module CLI
     extend self
 
-    USAGE = <<-EOF
-Usage: oncall
+    USAGE = <<~EOF
+      Usage: oncall
 
-Options:
-  --help      Display this help message
+      Options:
+        --help      Display this help message
     EOF
 
     def invoke
@@ -37,6 +37,5 @@ Options:
     def print_usage
       puts USAGE
     end
-
   end
 end
