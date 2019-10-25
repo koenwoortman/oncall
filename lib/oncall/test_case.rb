@@ -5,7 +5,15 @@ module Oncall
     end
 
     def get(endpoint, &block)
-      Oncall::Request.new(endpoint)
+      test = Oncall::Request.new(endpoint)
+      test.bootstrap(&block)
+      test.run
+    end
+
+    def post(endpoint, &block)
+      test = Oncall::Request.new(endpoint)
+      test.bootstrap(&block)
+      test.run
     end
   end
 end
