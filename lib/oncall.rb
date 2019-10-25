@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'net/http'
+require 'uri'
 require 'yaml'
 require 'optparse'
 require 'json-schema'
