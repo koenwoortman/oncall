@@ -12,10 +12,9 @@ module Oncall
     end
 
     def run
-      uri = URI.parse("http://#{@config['domain']}:#{@config['port']}#{@endpoint}")
-      http = Net::HTTP.new(uri.host, uri.port)
+      http = Net::HTTP.new(@config['domain'], @config['port'])
 
-      request = Net::HTTP::Get.new(uri.request_uri)
+      request = Net::HTTP::Get.new(@endpoint)
 
       request['User-Agent'] = 'Oncall'
 
