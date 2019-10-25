@@ -1,6 +1,7 @@
 module Oncall
   class Request
-    def initialize(endpoint)
+    def initialize(config, endpoint)
+      @config = config
       @endpoint = endpoint
       @headers = {}
       @expectations = []
@@ -11,7 +12,7 @@ module Oncall
     end
 
     def run
-      uri = URI.parse("http://localhost:4567#{@endpoint}")
+      uri = URI.parse("http://#{@config['domain']}:#{@config['port']}#{@endpoint}")
       http = Net::HTTP.new(uri.host, uri.port)
 
       request = Net::HTTP::Get.new(uri.request_uri)

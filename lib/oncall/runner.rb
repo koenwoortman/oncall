@@ -25,6 +25,8 @@ module Oncall
     end
 
     def process_files(files)
+      @test_wrapper.set_config(@config)
+
       files.each do |file|
         @test_wrapper.evaluate(file)
       end
