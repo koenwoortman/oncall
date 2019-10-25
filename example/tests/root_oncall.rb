@@ -1,4 +1,4 @@
-Endpoint.get '/' do
+get '/' do
   header 'Content-Type' => 'application/json'
 
   body 'should comply with JSON schema' do

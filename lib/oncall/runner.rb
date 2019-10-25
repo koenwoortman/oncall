@@ -7,6 +7,7 @@ module Oncall
     def initialize
       @config = {}
       @pattern = DEFAULT_PATTERN
+      @test_wrapper = Oncall::TestWrapper.new
     end
 
     def run
@@ -25,7 +26,7 @@ module Oncall
 
     def process_files(files)
       files.each do |file|
-        evaluate(file)
+        @test_wrapper.evaluate(file)
       end
     end
 
@@ -33,11 +34,6 @@ module Oncall
 
     def merge_config(config)
       @config = config
-    end
-
-    def evaluate(file)
-      test_class = Oncall::Endpoint.new
-      test_class.run(file)
     end
   end
 end

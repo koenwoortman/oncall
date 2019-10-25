@@ -1,2 +1,2 @@
-Endpoint.get '/404' do
+get '/404' do
 end
