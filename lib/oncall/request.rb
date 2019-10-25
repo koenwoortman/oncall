@@ -3,6 +3,7 @@ module Oncall
     def initialize(endpoint)
       @endpoint = endpoint
       @headers = {}
+      @expectations = []
     end
 
     def bootstrap(&block)
@@ -21,8 +22,11 @@ module Oncall
         request[key] = value
       end
 
-      response = http.request(request)
-      puts response
+      http.request(request)
+
+      @expectations.each do |expectation|
+        puts expectation
+      end
     end
 
     private
@@ -32,15 +36,15 @@ module Oncall
     end
 
     def body(description, &block)
-      puts description
+      @expectations.push(description)
     end
 
     def status(description, &block)
-      puts description 
+      @expectations.push(description)
     end
 
     def profiler(description, &block)
-      puts description 
+      @expectations.push(description)
     end
   end
 end
