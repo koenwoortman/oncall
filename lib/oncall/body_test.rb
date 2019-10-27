@@ -8,6 +8,7 @@ module Oncall
 
     def run(&block)
       instance_eval(&block)
+      @result
     end
 
     private

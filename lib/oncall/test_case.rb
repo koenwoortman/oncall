@@ -11,8 +11,8 @@ module Oncall
 
     def get(endpoint, &block)
       test = Oncall::Request.new(@config, endpoint)
-      test.bootstrap(&block)
-      test.run
+      test.bootstrap
+      test.run(&block)
     end
 
     def post(endpoint, &block)

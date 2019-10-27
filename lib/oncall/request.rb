@@ -5,28 +5,28 @@ module Oncall
       @endpoint = endpoint
       @headers = {}
       @expectations = []
+      @http = nil
+      @response = nil
+      @request = nil
     end
 
-    def bootstrap(&block)
-      instance_eval(&block)      
-    end
+    def bootstrap
+      @http = Net::HTTP.new(@config['domain'], @config['port'])
 
-    def run
-      http = Net::HTTP.new(@config['domain'], @config['port'])
+      @request = Net::HTTP::Get.new(@endpoint)
 
-      request = Net::HTTP::Get.new(@endpoint)
-
-      request['User-Agent'] = 'Oncall'
+      @request['User-Agent'] = 'Oncall'
 
       @headers.each do |key, value|
         request[key] = value
       end
 
-      http.request(request)
+    end
 
-      @expectations.each do |expectation|
-        puts expectation
-      end
+    def run(&block)
+      @response = @http.request(@request)
+
+      instance_eval(&block)
     end
 
     private
@@ -36,7 +36,9 @@ module Oncall
     end
 
     def body(description, &block)
-      @expectations.push(Oncall::BodyTest.new({}, description).run(&block))
+      result = Oncall::BodyTest.new(@response.body, description).run(&block)
+      puts "Endpoint: #{@endpoint} -----"
+      puts "   Body: #{description}: #{result}"
     end
 
     def status(description, &block)
