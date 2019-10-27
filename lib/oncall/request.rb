@@ -36,7 +36,7 @@ module Oncall
     end
 
     def body(description, &block)
-      @expectations.push(description)
+      @expectations.push(Oncall::BodyTest.new({}, description).run(&block))
     end
 
     def status(description, &block)
