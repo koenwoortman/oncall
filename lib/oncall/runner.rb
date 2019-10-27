@@ -22,6 +22,7 @@ module Oncall
       files = Dir.glob(@pattern)
 
       process_files(files)
+      0
     end
 
     def process_files(files)

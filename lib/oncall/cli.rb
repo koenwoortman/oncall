@@ -20,7 +20,8 @@ module Oncall
       end
 
       runner = Oncall::Runner.new
-      runner.run
+      status = runner.run.to_i
+      exit(status)
     end
 
     private
