@@ -9,6 +9,9 @@ module Oncall
       USAGE = <<~EOF
         Usage: oncall
 
+        init          Initialize dotfiles directory
+        run           Run test suite
+
         Options:
           --help      Display this help message
           --version   Show version information
@@ -35,7 +38,7 @@ module Oncall
 
       protected
 
-      def print_version 
+      def print_version
         puts "oncall: version #{Oncall::VERSION}"
       end
 
