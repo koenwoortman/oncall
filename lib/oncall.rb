@@ -12,6 +12,5 @@ module Oncall
   require File.expand_path(File.join(File.dirname(__FILE__), 'oncall', 'request'))
   require File.expand_path(File.join(File.dirname(__FILE__), 'oncall', 'test_case'))
   require File.expand_path(File.join(File.dirname(__FILE__), 'oncall', 'test_wrapper'))
-  require File.expand_path(File.join(File.dirname(__FILE__), 'oncall', 'version'))
   require File.expand_path(File.join(File.dirname(__FILE__), 'oncall', 'runner'))
 end
