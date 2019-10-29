@@ -10,7 +10,7 @@ module Oncall
     end
 
     def set_config(config)
-      @config = config['develop']
+      @config = config
     end
   end
 end

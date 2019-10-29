@@ -4,10 +4,11 @@ module Oncall
   class Runner
     DEFAULT_PATTERN = '**{,/*/**}/*_oncall.rb'
 
-    def initialize
+    def initialize(env)
       @config = {}
       @pattern = DEFAULT_PATTERN
       @test_wrapper = Oncall::TestWrapper.new
+      @env = env
     end
 
     def run
@@ -36,7 +37,13 @@ module Oncall
     private
 
     def merge_config(config)
-      @config = config
+      if config.key?(@env)
+        @config = config[@env]
+      elsif config.key?('default')
+        @config = config[config['default']]
+      else
+        raise 'Config error'  
+      end
     end
   end
 end
