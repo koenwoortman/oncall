@@ -1,10 +1,9 @@
 module Oncall
   module Commands
     class InitCommand < BaseCommand
-      def call
-        puts ARGV
-
-        SUCCESS
+      def self.invoke(args)
+        puts 'init'
+        exit
       end
     end
   end

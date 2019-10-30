@@ -1,12 +1,10 @@
 module Oncall
   module Commands
     class RunCommand < BaseCommand
-      def call
-        env = ARGV[1]
+      def self.invoke(args)
+        env = ARGV[0]
         runner = Oncall::Runner.new(env)
-        status = runner.run.to_i
-
-        SUCCESS
+        exit runner.run.to_i
       end
     end
   end

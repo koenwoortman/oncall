@@ -6,50 +6,29 @@ module Oncall
 
       SUCCESS = 0
 
-      USAGE = <<~EOF
-        Usage: oncall
-
-        init          Initialize dotfiles directory
-        run           Run test suite
-
-        Options:
-          --help      Display this help message
-          --version   Show version information
-      EOF
-
-      def initialize
-        @options = parse_options
+      def initialize(args)
+        @args = args
       end
 
-      def self.invoke
-        exit new.call.to_i
-      end
+      def self.invoke(args)
+        OptionParser.new do |opts|
+          opts.banner = 'Usage: oncall'
+          opts.separator ''
+          opts.separator 'Options:'
 
-      def call
-        case @options[0]
-        when :version
-          print_version
-        else
-          puts USAGE
-        end
+          opts.on('--version', 'Show version information.') do
+            puts "oncall: version #{Oncall::VERSION}"
+            exit
+          end
 
-        SUCCESS
-      end
+          opts.on('--help', 'Display this help message.') do
+            puts opts
+            exit
+          end
 
-      protected
-
-      def print_version
-        puts "oncall: version #{Oncall::VERSION}"
-      end
-
-      def parse_options
-        options = []
-        OptionParser.new do |opt|
-          opt.on('--help') { options.push(:help) }
-          opt.on('--version') { options.push(:version) }
+          puts opts
+          exit
         end.parse!
-
-        options
       end
     end
   end

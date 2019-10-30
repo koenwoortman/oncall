@@ -8,14 +8,14 @@ module Oncall
   module CLI
     extend self
 
-    def invoke
+    def self.run
       case ARGV[0].to_s.downcase
       when 'init'
-        Oncall::Commands::InitCommand.invoke
+        Oncall::Commands::InitCommand.invoke(ARGV.shift)
       when 'run'
-        Oncall::Commands::RunCommand.invoke
+        Oncall::Commands::RunCommand.invoke(ARGV.shift)
       else
-        Oncall::Commands::BaseCommand.invoke
+        Oncall::Commands::BaseCommand.invoke(ARGV)
       end
     end
   end
