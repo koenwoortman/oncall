@@ -1,2 +1,2 @@
-get '/404' do
-end
+# get '/404' do
+# end

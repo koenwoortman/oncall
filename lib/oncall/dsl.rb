@@ -1,4 +1,7 @@
 module Oncall
-  module DSL
+  class DSL
+    def describe(group, &block)
+      puts group
+    end
   end
 end
