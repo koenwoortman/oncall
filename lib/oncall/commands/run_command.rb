@@ -1,6 +1,6 @@
 module Oncall
   module Commands
-    class RunCommand < BaseCommand
+    class RunCommand
       def self.invoke(args)
         env = ARGV[0]
         runner = Oncall::Runner.new(env)

@@ -1,6 +1,6 @@
 module Oncall
   module Commands
-    class InitCommand < BaseCommand
+    class InitCommand
       def self.invoke(args)
         puts 'init'
         exit

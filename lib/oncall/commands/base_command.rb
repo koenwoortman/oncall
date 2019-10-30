@@ -3,13 +3,6 @@ require_relative '../version'
 module Oncall
   module Commands
     class BaseCommand
-
-      SUCCESS = 0
-
-      def initialize(args)
-        @args = args
-      end
-
       def self.invoke(args)
         OptionParser.new do |opts|
           opts.banner = 'Usage: oncall'
