@@ -16,10 +16,13 @@ module Oncall
 
     def get(path, &block)
       if block_given?
-        response = Oncall::Response.new
+        http = Net::HTTP.new('localhost', 4567)
+        request = Net::HTTP::Get.new(path)
+        response = Oncall::Response.new(http.request(request))
+
         begin
           resuls = response.instance_eval &block
-          puts resuls
+          resuls
         end
       else
         # Return status empty
