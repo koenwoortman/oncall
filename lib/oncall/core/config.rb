@@ -15,6 +15,14 @@ module Oncall
         1
       end
 
+      def domain
+        'localhost'
+      end
+
+      def port
+        4567
+      end
+
       def test_files
         Dir.glob(pattern)
       end

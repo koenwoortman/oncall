@@ -1,10 +1,14 @@
 module Oncall
   module Core
     class Scenario
+      def initialize
+        @config = Oncall::Core.config
+        @http = Net::HTTP.new(@config.domain, @config.port)
+      end
+
       def get(path, &block)
-        http = Net::HTTP.new('localhost', 4567)
         request = Net::HTTP::Get.new(path)
-        response = http.request(request)
+        response = @http.request(request)
 
         assertion = Oncall::Core::Assertion.new(response)
         assertion.instance_exec(&block)
