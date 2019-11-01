@@ -1,12 +1,13 @@
 module Oncall
   module Core
     class Assertion
-      def initialize
+      def initialize(response)
         @reporter = Oncall::Core.reporter
+        @response = response
       end
 
       def status(expected)
-        result = 200 == expected
+        result = @response.code == expected.to_s
         @reporter.report_status(result)
       end
     end
