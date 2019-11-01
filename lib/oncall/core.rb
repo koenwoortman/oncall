@@ -3,6 +3,7 @@ module Oncall
     require_relative 'core/config'
     require_relative 'core/reporter'
     require_relative 'core/runner'
+    require_relative 'core/scenario'
     require_relative 'core/world'
 
     class << self

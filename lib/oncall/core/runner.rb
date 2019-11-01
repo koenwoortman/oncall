@@ -18,7 +18,7 @@ module Oncall
 
       def run(err, out)
         setup(err, out)
-        run_tests(@world.tests)
+        run_tests(@world.suite)
       end
 
       def setup(err, out)
@@ -26,10 +26,9 @@ module Oncall
         @world.register_suite(files)
       end
 
-      def run_tests(tests)
-
-        success = @config.reporter.report(tests) do |reporter|
-          @world.suite.map { |g| g.run(reporter) }
+      def run_tests(suite)
+        success = @config.reporter.report(suite) do |reporter|
+          suite.map { |g| g.run(reporter) }
         end
 
         success ? 0 : @config.failure_exit_code
