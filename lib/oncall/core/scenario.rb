@@ -4,10 +4,22 @@ module Oncall
       def initialize
         @config = Oncall::Core.config
         @http = Net::HTTP.new(@config.domain, @config.port)
+        @headers = { 'User-Agent' => "oncall/#{Oncall::VERSION}" }
+      end
+
+      def header(hash)
+        hash.each do |key, value|
+          @headers[key] = value
+        end
       end
 
       def get(path, &block)
         request = Net::HTTP::Get.new(path)
+
+        @headers.each do |key, value|
+          request[key] = value
+        end
+
         response = @http.request(request)
 
         assertion = Oncall::Core::Assertion.new(response, 'GET', path)

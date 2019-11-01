@@ -1,4 +1,6 @@
 describe do
+  header 'Content-Type' => 'application/json'
+
   get '/' do
     schema = {
       'type' => 'object',
