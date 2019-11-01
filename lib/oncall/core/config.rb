@@ -19,8 +19,8 @@ module Oncall
         @reporter ||= Oncall::Core::Reporter.new
       end
 
-      def load_test_files
-        @files = Dir.glob(pattern)
+      def test_files
+        Dir.glob(pattern)
       end
     end
   end

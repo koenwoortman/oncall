@@ -22,13 +22,14 @@ module Oncall
       end
 
       def setup(err, out)
-        @config.load_test_files
+        files = @config.test_files
+        @world.register_suite(files)
       end
 
       def run_tests(tests)
 
         success = @config.reporter.report(tests) do |reporter|
-          reporter
+          @world.suite.map { |g| g.run(reporter) }
         end
 
         success ? 0 : @config.failure_exit_code
