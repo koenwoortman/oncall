@@ -11,10 +11,7 @@ module Oncall
       def status(expected)
         result = @response.code == expected.to_s
 
-        message = """#{@method} #{@path}
-expected: #{expected}
-actual: #{@response.code}
-        """
+        message = "#{@method} #{@path}\nexpected: #{expected}\nactual: #{@response.code}"
 
         @reporter.report_status(result, message)
       end

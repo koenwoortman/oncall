@@ -20,15 +20,12 @@ module Oncall
         end
       end
 
-      def start
-      end
+      def start; end
 
       def finish
         puts "\n\n"
-
         puts @messages
-
-        puts "#{@results[:success]} passed, #{@results[:failure]} failed."
+        puts "\n#{@results[:success]} passed, #{@results[:failure]} failed."
       end
 
       def success?
