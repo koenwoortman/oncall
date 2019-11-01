@@ -7,6 +7,8 @@ module Oncall
           success: 0,
           empty: 0
         }
+
+        @messages = []
       end
 
       def report(tests)
@@ -22,7 +24,10 @@ module Oncall
       end
 
       def finish
-        puts "\n"
+        puts "\n\n"
+
+        puts @messages
+
         puts "#{@results[:success]} passed, #{@results[:failure]} failed."
       end
 
@@ -35,13 +40,14 @@ module Oncall
         @results[:empty] = @results[:empty] + 1
       end
 
-      def report_status(result)
+      def report_status(result, message)
         if result
           print '.'
           @results[:success] = @results[:success] + 1
         else
           print 'F'
           @results[:failure] = @results[:failure] + 1
+          @messages << message
         end
       end
     end

@@ -10,7 +10,7 @@ module Oncall
         request = Net::HTTP::Get.new(path)
         response = @http.request(request)
 
-        assertion = Oncall::Core::Assertion.new(response)
+        assertion = Oncall::Core::Assertion.new(response, 'GET', path)
         assertion.instance_exec(&block)
       end
     end
