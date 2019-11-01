@@ -28,11 +28,11 @@ module Oncall
       end
 
       def run_tests(suite)
-        success = @reporter.report(suite) do |reporter|
+        @reporter.report(suite) do |reporter|
           suite.map { |g| g.run(reporter) }
         end
 
-        success ? 0 : @config.failure_exit_code
+        @reporter.success? ? 0 : @config.failure_exit_code
       end
     end
   end
