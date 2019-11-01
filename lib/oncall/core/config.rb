@@ -3,10 +3,6 @@ module Oncall
     class Config
       DEFAULT_PATTERN = '**{,/*/**}/*_oncall.rb'.freeze
 
-      def initialize
-        @files = []
-      end
-
       def pattern
         DEFAULT_PATTERN
       end
