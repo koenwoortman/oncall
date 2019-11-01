@@ -3,7 +3,7 @@ module Oncall
     class Scenario
       def get(path, &block)
         assertion = Oncall::Core::Assertion.new
-        puts assertion.instance_exec(&block)
+        assertion.instance_exec(&block)
       end
     end
   end

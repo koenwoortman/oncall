@@ -3,11 +3,6 @@ require 'logger'
 module Oncall
   module Core
     class Reporter
-
-      def initialize(out)
-        @logger = Logger.new(out)
-      end
-
       def report(tests)
         start
         begin
@@ -23,6 +18,10 @@ module Oncall
 
       def finish
         puts 'Reporter: finish'
+      end
+
+      def report_status(result)
+        puts result
       end
     end
   end

@@ -23,5 +23,9 @@ module Oncall
     def self.world
       @world ||= Oncall::Core::World.new
     end
+
+    def self.reporter
+      @reporter ||= Oncall::Core::Reporter.new
+    end
   end
 end

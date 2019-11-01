@@ -1,10 +1,10 @@
 module Oncall
   module Core
     class Runner
-      def initialize(config=Oncall::Core.config, world=Oncall::Core.world)
+      def initialize(reporter=Oncall::Core.reporter, config=Oncall::Core.config, world=Oncall::Core.world)
         @config = config
         @world = world
-        @reporter = nil
+        @reporter = reporter
       end
 
       def self.invoke(args)
@@ -23,8 +23,6 @@ module Oncall
       end
 
       def setup(err, out)
-        @reporter = Oncall::Core::Reporter.new(out)
-
         files = @config.test_files
         @world.register_suite(files)
       end
