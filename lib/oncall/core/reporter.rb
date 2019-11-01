@@ -17,6 +17,10 @@ module Oncall
         puts ''
       end
 
+      def report_empty_group
+        print 'E'
+      end
+
       def report_status(result)
         if result
           print '.'
