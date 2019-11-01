@@ -6,12 +6,7 @@ module Oncall
       end
 
       def run(reporter)
-        scenario = Oncall::Core::Scenario.new
-        describe = scenario.instance_eval File.read(@file)
-
-        if describe
-          describe.call
-        end
+        Oncall::Core::Group.new.instance_eval File.read(@file)
       end
     end
   end

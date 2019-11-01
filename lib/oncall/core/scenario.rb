@@ -1,16 +1,9 @@
 module Oncall
   module Core
     class Scenario
-      def describe(&block)
-        if block_given?
-          Proc.new &block
-        else
-          :empty
-        end
-      end
-
       def get(path, &block)
-        puts path
+        assertion = Oncall::Core::Assertion.new
+        puts assertion.instance_exec(&block)
       end
     end
   end
