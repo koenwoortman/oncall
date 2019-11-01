@@ -4,6 +4,7 @@ module Oncall
       def initialize(config=Oncall::Core.config, world=Oncall::Core.world)
         @config = config
         @world = world
+        @reporter = nil
       end
 
       def self.invoke(args)
@@ -22,12 +23,14 @@ module Oncall
       end
 
       def setup(err, out)
+        @reporter = Oncall::Core::Reporter.new(out)
+
         files = @config.test_files
         @world.register_suite(files)
       end
 
       def run_tests(suite)
-        success = @config.reporter.report(suite) do |reporter|
+        success = @reporter.report(suite) do |reporter|
           suite.map { |g| g.run(reporter) }
         end
 

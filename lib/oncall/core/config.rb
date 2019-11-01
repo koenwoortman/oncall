@@ -15,10 +15,6 @@ module Oncall
         1
       end
 
-      def reporter
-        @reporter ||= Oncall::Core::Reporter.new
-      end
-
       def test_files
         Dir.glob(pattern)
       end
