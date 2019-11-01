@@ -1,3 +1,5 @@
+require 'colorize'
+
 module Oncall
   module Core
     class Reporter
@@ -25,7 +27,14 @@ module Oncall
       def finish
         puts "\n\n"
         puts @messages
-        puts "\n#{@results[:success]} passed, #{@results[:failure]} failed."
+
+        result = "\n#{@results[:success]} passed, #{@results[:failure]} failed.\n"
+
+        if success?
+          puts result.green
+        else
+          puts result.red
+        end
       end
 
       def success?
