@@ -1,5 +1,3 @@
-require 'logger'
-
 module Oncall
   module Core
     class Reporter
@@ -13,15 +11,18 @@ module Oncall
       end
 
       def start
-        puts 'Reporter: start'
       end
 
       def finish
-        puts 'Reporter: finish'
+        puts ''
       end
 
       def report_status(result)
-        puts result
+        if result
+          print '.'
+        else
+          print 'F'
+        end
       end
     end
   end
