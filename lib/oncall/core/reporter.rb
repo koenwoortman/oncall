@@ -42,7 +42,7 @@ module Oncall
       end
 
       def report_empty_group
-        print 'E'
+        print '*'
         @results[:empty] = @results[:empty] + 1
       end
 
