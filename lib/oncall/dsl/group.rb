@@ -7,7 +7,7 @@ module Oncall
 
       def group(&block)
         if block_given?
-          scenario = Oncall::DSL::Scenario.new
+          scenario = Oncall::DSL::Call.new
           scenario.instance_exec &block
         else
           @reporter.report_empty_group

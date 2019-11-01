@@ -1,6 +1,6 @@
 module Oncall
   module DSL
-    class Scenario
+    class Call
       def initialize
         @config = Oncall::Core.config
         @http = Net::HTTP.new(@config.domain, @config.port)
