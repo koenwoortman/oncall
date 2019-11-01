@@ -1,10 +1,16 @@
 module Oncall
   module Core
     class Scenario
-      def initialize(file)
+      def describe(&block)
+        if block_given?
+          Proc.new &block
+        else
+          :empty
+        end
       end
 
-      def run(reporter)
+      def get(path, &block)
+        puts path
       end
     end
   end

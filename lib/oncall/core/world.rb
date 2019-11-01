@@ -10,8 +10,8 @@ module Oncall
 
       def register_suite(files)
         files.each do |file|
-          scenario = Oncall::Core::Scenario.new(file)
-          @suite << scenario
+          wrapper = Oncall::Core::Wrapper.new(file)
+          @suite << wrapper
         end
       end
     end

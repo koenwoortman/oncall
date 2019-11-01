@@ -1,4 +1,4 @@
-describe :root do
+describe do
   get '/' do
     status 200
 
