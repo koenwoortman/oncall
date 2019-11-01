@@ -1,4 +1,4 @@
-describe do
+group do
   header 'Content-Type' => 'application/json'
 
   get '/' do

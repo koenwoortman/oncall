@@ -1,4 +1,4 @@
-describe do
+group do
   get '/404' do
     status 404
 

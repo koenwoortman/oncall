@@ -1,5 +1,5 @@
 module Oncall
-  module Core
+  module DSL
     class Assertion
       def initialize(response, method, path)
         @reporter = Oncall::Core.reporter

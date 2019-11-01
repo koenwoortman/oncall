@@ -1,5 +1,5 @@
 module Oncall
-  module Core
+  module DSL
     class Scenario
       def initialize
         @config = Oncall::Core.config
@@ -22,7 +22,7 @@ module Oncall
 
         response = @http.request(request)
 
-        assertion = Oncall::Core::Assertion.new(response, 'GET', path)
+        assertion = Oncall::DSL::Assertion.new(response, 'GET', path)
         assertion.instance_exec(&block)
       end
     end

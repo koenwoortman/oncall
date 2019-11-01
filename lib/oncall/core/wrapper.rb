@@ -1,3 +1,5 @@
+require_relative '../dsl'
+
 module Oncall
   module Core
     class Wrapper
@@ -6,7 +8,7 @@ module Oncall
       end
 
       def run(reporter)
-        Oncall::Core::Group.new.instance_eval File.read(@file)
+        Oncall::DSL::Group.new.instance_eval File.read(@file)
       end
     end
   end

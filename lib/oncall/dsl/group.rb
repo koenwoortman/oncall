@@ -1,13 +1,13 @@
 module Oncall
-  module Core
+  module DSL
     class Group
       def initialize
         @reporter = Oncall::Core.reporter
       end
 
-      def describe(&block)
+      def group(&block)
         if block_given?
-          scenario = Oncall::Core::Scenario.new
+          scenario = Oncall::DSL::Scenario.new
           scenario.instance_exec &block
         else
           @reporter.report_empty_group
