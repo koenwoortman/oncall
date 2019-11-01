@@ -1,13 +1,10 @@
-require_relative '../suite'
+require_relative '../core'
 
 module Oncall
   module Commands
     class RunCommand
       def self.invoke(args)
-        suite = Oncall::Suite.new
-        suite.collect
-        suite.process
-        suite.eval
+        Oncall::Core::Runner.invoke(args)
       end
     end
   end
