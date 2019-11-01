@@ -3,6 +3,7 @@
 require_relative 'commands/base_command'
 require_relative 'commands/init_command'
 require_relative 'commands/run_command'
+require_relative 'commands/shell_command'
 
 module Oncall
   module CLI
@@ -14,6 +15,8 @@ module Oncall
         Oncall::Commands::InitCommand.invoke(ARGV.shift)
       when 'run'
         Oncall::Commands::RunCommand.invoke(ARGV.shift)
+      when 'shell'
+        Oncall::Commands::ShellCommand.invoke(ARGV.shift)
       else
         Oncall::Commands::BaseCommand.invoke(ARGV)
       end
