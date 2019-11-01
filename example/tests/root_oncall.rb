@@ -1,14 +1,14 @@
 describe do
   get '/' do
-    status 200
-    status 404
+    schema = {
+      'type' => 'object',
+      'required' => ['foo'],
+      'properties' => {
+        'foo' => { 'type' => 'string' }
+      }
+    }
 
-    # schema {
-    #   'type' => 'object',
-    #   'required' => ['foo'],
-    #   'properties' => {
-    #     'foo' => { 'type' => 'string' }
-    #   }
-    # }
+    status 200
+    validate schema
   end
 end

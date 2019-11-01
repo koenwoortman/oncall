@@ -15,6 +15,14 @@ module Oncall
 
         @reporter.report_status(result, message)
       end
+
+      def validate(expected)
+        result = JSON::Validator.validate(expected, @response.body)
+
+        message = "#{@method} #{@path}\nexpected: #{expected}\nactual: #{@response.body}"
+
+        @reporter.report_status(result, message)
+      end
     end
   end
 end
