@@ -1,3 +1,5 @@
+require_relative '../http'
+
 module Oncall
   module DSL
     class Call
@@ -5,6 +7,7 @@ module Oncall
         @config = Oncall::Core.config
         @http = Net::HTTP.new(@config.domain, @config.port)
         @headers = { 'User-Agent' => "oncall/#{Oncall::VERSION}" }
+        @params = {}
       end
 
       def header(hash)
@@ -13,8 +16,15 @@ module Oncall
         end
       end
 
+      def param(hash)
+        hash.each do |key, value|
+          @params[key] = value
+        end
+      end
+
       def get(path, &block)
-        request = Net::HTTP::Get.new(path)
+        uri = Oncall::HTTP.uri(path, @params)
+        request = Net::HTTP::Get.new(uri)
 
         @headers.each do |key, value|
           request[key] = value

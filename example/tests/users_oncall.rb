@@ -9,12 +9,14 @@ group :user do
     }
   }
 
+  param id: 1
+
   get '/users' do
     status 200
     validate schema
   end
 
-  get '/users/1' do
+  get '/users/:id' do
     status 200
     validate schema
   end
