@@ -9,7 +9,7 @@ module Oncall
     STATUS_EMPTY = :empty
 
     class << self
-      attr_writer :config, :world
+      attr_writer :config, :world, :reporter
     end
 
     def self.config
