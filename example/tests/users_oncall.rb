@@ -14,7 +14,7 @@ group :user do
     validate schema
   end
 
-  get '/users/:id' do
+  get '/users/1' do
     status 200
     validate schema
   end
