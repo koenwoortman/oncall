@@ -12,11 +12,11 @@ module Oncall
     def self.run
       case ARGV[0].to_s.downcase
       when 'init'
-        Oncall::Commands::InitCommand.invoke(ARGV.shift)
+        Oncall::Commands::InitCommand.invoke(ARGV)
       when 'run'
-        Oncall::Commands::RunCommand.invoke(ARGV.shift)
+        Oncall::Commands::RunCommand.invoke(ARGV)
       when 'shell'
-        Oncall::Commands::ShellCommand.invoke(ARGV.shift)
+        Oncall::Commands::ShellCommand.invoke(ARGV)
       else
         Oncall::Commands::BaseCommand.invoke(ARGV)
       end

@@ -3,6 +3,19 @@ module Oncall
     class Config
       DEFAULT_PATTERN = '**{,/*/**}/*_oncall.rb'.freeze
 
+      def initialize
+        @config = []
+        @env = 'develop'
+      end
+
+      def set_config(config)
+        @config = config
+      end
+
+      def set_env(env)
+        @env = env
+      end
+
       def pattern
         DEFAULT_PATTERN
       end
@@ -12,11 +25,11 @@ module Oncall
       end
 
       def domain
-        'localhost'
+        @config[@env]['domain'] || 'localhost'
       end
 
       def port
-        4567
+        @config[@env]['port'] || 4567
       end
 
       def test_files
