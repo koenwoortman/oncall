@@ -5,7 +5,7 @@ module Oncall
         @reporter = Oncall::Core.reporter
       end
 
-      def group(&block)
+      def group(name=nil, &block)
         if block_given?
           scenario = Oncall::DSL::Call.new
           scenario.instance_exec &block
