@@ -7,6 +7,10 @@ module Oncall
         OptionParser.new do |opts|
           opts.banner = 'Usage: oncall'
           opts.separator ''
+          opts.separator 'Commands:'
+          opts.separator '        init                         Create an empty oncall project.'
+          opts.separator '        run   [ENV]                  Run the test suite.'
+          opts.separator ''
           opts.separator 'Options:'
 
           opts.on('--version', 'Show version information.') do
