@@ -6,8 +6,6 @@ module Oncall
     require_relative 'core/world'
     require_relative 'core/wrapper'
 
-    STATUS_EMPTY = :empty
-
     class << self
       attr_writer :config, :world, :reporter
     end

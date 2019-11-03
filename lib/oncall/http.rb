@@ -2,10 +2,7 @@ module Oncall
   module HTTP
     def self.uri(path, params)
       parts = path.split('/')
-
-      if parts.empty?
-        return '/'
-      end
+      return '/' if parts.empty?
 
       parts.each_with_index do |part, index|
         if part.start_with?(':')

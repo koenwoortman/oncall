@@ -10,6 +10,8 @@ module Oncall
           empty: 0
         }
 
+        @start_time = nil
+        @end_time = nil
         @messages = []
       end
 
@@ -22,13 +24,20 @@ module Oncall
         end
       end
 
-      def start; end
+      def start
+        @start_time = Time.now
+      end
 
       def finish
+        @end_time = Time.now
+
         puts "\n\n"
         puts @messages
 
-        result = "\n#{@results[:success]} passed, #{@results[:failure]} failed.\n"
+        elapsed_seconds = (@end_time.to_f - @start_time.to_f).to_f
+        puts "Finished in #{elapsed_seconds.round(4)} seconds"
+
+        result = "#{@results[:success]} passed, #{@results[:failure]} failed.\n"
 
         if success?
           puts result.green
