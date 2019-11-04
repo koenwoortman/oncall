@@ -13,4 +13,8 @@ group do
     status 200
     validate schema
   end
+
+  post '/' do
+    status 200
+  end
 end

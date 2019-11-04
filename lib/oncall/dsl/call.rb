@@ -35,6 +35,20 @@ module Oncall
         assertion = Oncall::DSL::Assertion.new(response, 'GET', path)
         assertion.instance_exec(&block)
       end
+
+      def post(path, &block)
+        uri = Oncall::HTTP.uri(path, @params)
+        request = Net::HTTP::Post.new(uri)
+
+        @headers.each do |key, value|
+          request[key] = value
+        end
+
+        response = @http.request(request)
+
+        assertion = Oncall::DSL::Assertion.new(response, 'POST', path)
+        assertion.instance_exec(&block)
+      end
     end
   end
 end
