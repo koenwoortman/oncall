@@ -4,7 +4,7 @@ module Oncall
       DEFAULT_PATTERN = '**{,/*/**}/*_oncall.rb'.freeze
 
       def initialize
-        @config = []
+        @config = {}
         @env = 'develop'
       end
 
@@ -29,7 +29,11 @@ module Oncall
       end
 
       def port
-        @config[@env]['port'] || 4567
+        if @config[@env]
+          @config[@env]['port']
+        else
+          4567
+        end
       end
 
       def test_files
