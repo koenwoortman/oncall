@@ -1,7 +1,7 @@
 require_relative '../version'
 
 module Oncall
-  module Commands
+  module CLI
     class BaseCommand
       def self.invoke(args)
         OptionParser.new do |opts|

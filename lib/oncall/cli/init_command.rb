@@ -1,5 +1,5 @@
 module Oncall
-  module Commands
+  module CLI
     class InitCommand
       def self.invoke(args)
         config_template_path = File.join(File.dirname(__FILE__), '..', 'templates', 'oncall.yml.template')

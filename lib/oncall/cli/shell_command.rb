@@ -1,7 +1,7 @@
 require 'readline'
 
 module Oncall
-  module Commands
+  module CLI
     class ShellCommand
       def self.invoke(args)
         while input = Readline.readline("> ", true)
