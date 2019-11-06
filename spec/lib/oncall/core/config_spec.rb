@@ -8,4 +8,12 @@ RSpec.describe Oncall::Core::Config do
       expect(config.port).to eq 4567
     end
   end
+
+  describe 'domain' do
+    it 'should return localhost as default' do
+      config = Oncall::Core::Config.new
+
+      expect(config.domain).to eq 'localhost'
+    end
+  end
 end

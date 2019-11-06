@@ -25,7 +25,11 @@ module Oncall
       end
 
       def domain
-        @config[@env]['domain'] || 'localhost'
+        if @config[@env]
+          @config[@env]['domain']
+        else
+          'localhost'
+        end
       end
 
       def port
