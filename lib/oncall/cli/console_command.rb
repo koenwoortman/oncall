@@ -2,10 +2,10 @@ require 'readline'
 
 module Oncall
   module CLI
-    class ShellCommand
+    class ConsoleCommand
       def self.invoke(args)
         while input = Readline.readline("> ", true)
-          break     if input == "exit"
+          break if input == "exit"
 
           # Remove blank lines from history
           Readline::HISTORY.pop if input == ""
