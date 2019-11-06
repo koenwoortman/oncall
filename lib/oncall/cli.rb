@@ -3,7 +3,7 @@
 require_relative 'cli/base_command'
 require_relative 'cli/console_command'
 require_relative 'cli/init_command'
-require_relative 'cli/test_command'
+require_relative 'cli/run_command'
 
 module Oncall
   module CLI
@@ -15,8 +15,8 @@ module Oncall
         Oncall::CLI::ConsoleCommand.invoke(ARGV)
       when 'init'
         Oncall::CLI::InitCommand.invoke(ARGV)
-      when 'test'
-        Oncall::CLI::TestCommand.invoke(ARGV)
+      when 'run'
+        Oncall::CLI::RunCommand.invoke(ARGV)
       else
         Oncall::CLI::BaseCommand.invoke(ARGV)
       end

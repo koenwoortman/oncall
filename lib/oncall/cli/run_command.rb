@@ -2,7 +2,7 @@ require_relative '../core'
 
 module Oncall
   module CLI
-    class TestCommand
+    class RunCommand
       def self.invoke(args)
         Oncall::Core::Runner.invoke(args)
       end
