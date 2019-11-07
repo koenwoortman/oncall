@@ -4,5 +4,6 @@ module Oncall
     require_relative 'invocations/init_runner'
     require_relative 'invocations/help_runner'
     require_relative 'invocations/test_runner'
+    require_relative 'invocations/version_runner'
   end
 end
