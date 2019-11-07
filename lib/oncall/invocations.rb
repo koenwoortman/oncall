@@ -1,9 +1,25 @@
 module Oncall
   module Invocations
-    require_relative 'invocations/console_runner'
-    require_relative 'invocations/init_runner'
-    require_relative 'invocations/help_runner'
-    require_relative 'invocations/test_runner'
-    require_relative 'invocations/version_runner'
+    class ConsoleRunner
+      def run(err, out); end
+    end
+
+    class HelpRunner
+      def run(err, out); end
+    end
+
+    class InitRunner
+      def run(err, out); end
+    end
+
+    class TestRunner
+      def run(err, out); end
+    end
+
+    class VersionRunner
+      def run(err, out)
+        out.puts "Oncall: v#{Oncall::VERSION}"
+      end
+    end
   end
 end
