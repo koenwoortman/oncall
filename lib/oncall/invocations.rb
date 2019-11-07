@@ -28,7 +28,8 @@ module Oncall
     end
 
     class TestRunner
-      def run(err, out); end
+      def run(err, out)
+      end
     end
 
     class VersionRunner

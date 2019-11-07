@@ -10,7 +10,6 @@ module Oncall
                   :path
 
     def initialize
-      @runner = nil
       @env = nil
       @pattern = nil
       @exclude = nil
