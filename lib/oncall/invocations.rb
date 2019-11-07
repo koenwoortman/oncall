@@ -5,7 +5,15 @@ module Oncall
     end
 
     class HelpRunner
-      def run(err, out); end
+      attr_reader :parser
+
+      def initialize(parser)
+        @parser = parser
+      end
+
+      def run(err, out)
+        out.puts parser
+      end
     end
 
     class InitRunner

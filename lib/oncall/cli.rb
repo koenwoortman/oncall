@@ -69,7 +69,7 @@ module Oncall
         end
 
         opt.on_tail('--help', 'This help message') do
-          options.runner= Oncall::Invocations::HelpRunner.new
+          options.runner= Oncall::Invocations::HelpRunner.new(parser)
         end
       end
     end
