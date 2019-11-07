@@ -1,6 +1,8 @@
 module Oncall
   # Manage the processing of command line options
   class CLI
+    SCRIPT = 'oncall'
+
     attr_reader :args, :options
 
     def initialize(args, options=Oncall.options)
@@ -16,29 +18,37 @@ module Oncall
       parser.parse!(args)
       options.runner.run
     rescue OptionParser::InvalidOption => e
-      abort 'Please use --help for a listing of valid options'
+      abort "#{SCRIPT}: #{e.message}\nPlease use --help for a listing of valid options"
+    rescue OptionParser::MissingArgument => e
+      abort "#{SCRIPT}: #{e.message}"
     end
 
     private
 
     def parser
       OptionParser.new do |opt|
-        opt.on('--env', '') do
+        opt.on('--env ENV', String) do |env|
+          options.env= env
         end
 
-        opt.on('--pattern', '') do
+        opt.on('--pattern PATTERN', String) do |pattern|
+          options.pattern= pattern
         end
 
-        opt.on('--exclude', '') do
+        opt.on('--exclude PATTERN', String) do |pattern|
+          options.exclude= pattern
         end
 
-        opt.on('--group', '') do
+        opt.on('--group GROUP', String) do |group|
+          options.group= group
         end
 
-        opt.on('--persist', '') do
+        opt.on('--persist PATH', String) do |path|
+          options.persist= path
         end
 
-        opt.on('--config', '') do
+        opt.on('--config PATH', String) do |path|
+          options.config= path
         end
 
         opt.on('--init', '') do
