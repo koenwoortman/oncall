@@ -1,29 +1,62 @@
-require_relative 'cli/base_command'
-require_relative 'cli/console_command'
-require_relative 'cli/init_command'
-require_relative 'cli/run_command'
-
 module Oncall
   # Manage the processing of command line options
-  module CLI
-    class << self
+  class CLI
+    attr_reader :args, :options
+
+    def initialize(args, options=Oncall.options)
+      @args = args
+      @options = options
     end
 
-    def self.run
-      case args.first
-      when 'console'
-        Oncall::CLI::ConsoleCommand.invoke
-      when 'init'
-        Oncall::CLI::InitCommand.invoke
-      when 'run'
-        Oncall::CLI::RunCommand.invoke
-      else
-        Oncall::CLI::BaseCommand.invoke
+    def self.run(args)
+      new(args).run
+    end
+
+    def run
+      parser.parse!(args)
+      options.runner.run
+    rescue OptionParser::InvalidOption => e
+      abort 'Please use --help for a listing of valid options'
+    end
+
+    private
+
+    def parser
+      OptionParser.new do |opt|
+        opt.on('--env', '') do
+        end
+
+        opt.on('--pattern', '') do
+        end
+
+        opt.on('--exclude', '') do
+        end
+
+        opt.on('--group', '') do
+        end
+
+        opt.on('--persist', '') do
+        end
+
+        opt.on('--config', '') do
+        end
+
+        opt.on('--init', '') do
+          options.runner= Oncall::InitRunner.new
+        end
+
+        opt.on('--console', '') do
+          options.runner= Oncall::ConsoleRunner.new
+        end
+
+        opt.on('--version', '') do
+          options.runner= Oncall::VersionRunner.new
+        end
+
+        opt.on_tail('--help', 'This help message') do
+          options.runner= Oncall::HelpRunner.new
+        end
       end
-    end
-
-    def self.args
-      @args ||= ARGV
     end
   end
 end
