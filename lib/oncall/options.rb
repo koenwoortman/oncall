@@ -3,7 +3,7 @@ module Oncall
     attr_accessor :runner
 
     def initialize
-      @runner = Oncall::TestRunner.new
+      @runner = Oncall::Invocations::TestRunner.new
     end
   end
 end

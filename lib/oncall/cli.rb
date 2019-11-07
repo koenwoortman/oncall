@@ -42,19 +42,19 @@ module Oncall
         end
 
         opt.on('--init', '') do
-          options.runner= Oncall::InitRunner.new
+          options.runner= Oncall::Invocations::InitRunner.new
         end
 
         opt.on('--console', '') do
-          options.runner= Oncall::ConsoleRunner.new
+          options.runner= Oncall::Invocations::ConsoleRunner.new
         end
 
         opt.on('--version', '') do
-          options.runner= Oncall::VersionRunner.new
+          options.runner= Oncall::Invocations::VersionRunner.new
         end
 
         opt.on_tail('--help', 'This help message') do
-          options.runner= Oncall::HelpRunner.new
+          options.runner= Oncall::Invocations::HelpRunner.new
         end
       end
     end
