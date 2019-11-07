@@ -1,7 +1,7 @@
 module Oncall
   class Options
-    attr_accessor :runner,
-                  :env,
+    attr_writer :runner
+    attr_accessor :env,
                   :pattern,
                   :exclude,
                   :group,
@@ -10,7 +10,7 @@ module Oncall
                   :path
 
     def initialize
-      @runner = Oncall::Invocations::TestRunner.new
+      @runner = nil
       @env = nil
       @pattern = nil
       @exclude = nil
@@ -18,6 +18,10 @@ module Oncall
       @persist = nil
       @config = nil
       @path = nil
+    end
+
+    def runner
+      @runner ||= Oncall::Invocations::TestRunner.new
     end
   end
 end
