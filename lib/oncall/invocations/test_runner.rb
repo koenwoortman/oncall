@@ -1,7 +1,7 @@
 module Oncall
   module Invocations
     class TestRunner
-      def run; end
+      def run(err, out); end
     end
   end
 end

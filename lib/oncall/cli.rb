@@ -15,12 +15,16 @@ module Oncall
     end
 
     def run
-      parser.parse!(args)
-      options.runner.run
-    rescue OptionParser::InvalidOption => e
-      abort "#{SCRIPT}: #{e.message}\nPlease use --help for a listing of valid options"
-    rescue OptionParser::MissingArgument => e
-      abort "#{SCRIPT}: #{e.message}"
+      begin
+        parser.parse!(args)
+      rescue OptionParser::InvalidOption => e
+        abort "#{SCRIPT}: #{e.message}\nPlease use --help for a listing of valid options"
+      rescue OptionParser::MissingArgument => e
+        abort "#{SCRIPT}: #{e.message}"
+      end
+
+      status = options.runner.run($stderr, $stdout)
+      exit(status) if status.is_a? Integer
     end
 
     private
@@ -55,9 +59,10 @@ module Oncall
           options.runner= Oncall::Invocations::InitRunner.new
         end
 
-        opt.on('--console', '') do
-          options.runner= Oncall::Invocations::ConsoleRunner.new
-        end
+        # This is for later
+        # opt.on('--console', '') do
+        #   options.runner= Oncall::Invocations::ConsoleRunner.new
+        # end
 
         opt.on('--version', '') do
           options.runner= Oncall::Invocations::VersionRunner.new
