@@ -6,7 +6,8 @@ module Oncall
                   :exclude,
                   :group,
                   :persist,
-                  :config
+                  :config,
+                  :path
 
     def initialize
       @runner = Oncall::Invocations::TestRunner.new
@@ -16,6 +17,7 @@ module Oncall
       @group = nil
       @persist = nil
       @config = nil
+      @path = nil
     end
   end
 end

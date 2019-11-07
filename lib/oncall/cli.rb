@@ -35,6 +35,10 @@ module Oncall
           options.env= env
         end
 
+        opt.on('--path PATH', String) do |path|
+          options.path= path
+        end
+
         opt.on('--pattern PATTERN', String) do |pattern|
           options.pattern= pattern
         end
