@@ -3,7 +3,7 @@ require_relative '../version'
 module Oncall
   module CLI
     class BaseCommand
-      def self.invoke(args)
+      def self.invoke
         OptionParser.new do |opts|
           opts.banner = 'Usage: oncall'
           opts.separator ''

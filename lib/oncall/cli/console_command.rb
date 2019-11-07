@@ -3,7 +3,7 @@ require 'readline'
 module Oncall
   module CLI
     class ConsoleCommand
-      def self.invoke(args)
+      def self.invoke
         while input = Readline.readline("> ", true)
           break if input == "exit"
 

@@ -1,25 +1,29 @@
-# frozen_string_literal: true
-
 require_relative 'cli/base_command'
 require_relative 'cli/console_command'
 require_relative 'cli/init_command'
 require_relative 'cli/run_command'
 
 module Oncall
+  # Manage the processing of command line options
   module CLI
-    extend self
+    class << self
+    end
 
     def self.run
-      case ARGV[0].to_s.downcase
+      case args.first
       when 'console'
-        Oncall::CLI::ConsoleCommand.invoke(ARGV)
+        Oncall::CLI::ConsoleCommand.invoke
       when 'init'
-        Oncall::CLI::InitCommand.invoke(ARGV)
+        Oncall::CLI::InitCommand.invoke
       when 'run'
-        Oncall::CLI::RunCommand.invoke(ARGV)
+        Oncall::CLI::RunCommand.invoke
       else
-        Oncall::CLI::BaseCommand.invoke(ARGV)
+        Oncall::CLI::BaseCommand.invoke
       end
+    end
+
+    def self.args
+      @args ||= ARGV
     end
   end
 end
