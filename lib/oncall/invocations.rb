@@ -27,15 +27,29 @@ module Oncall
       end
     end
 
-    class TestRunner
-      def run(err, out)
-      end
-    end
-
     class VersionRunner
       def run(err, out)
         out.puts "Oncall: v#{Oncall::VERSION}"
       end
+    end
+
+    class TestRunner
+      def run(err, out)
+        reporter.report do |r|
+          suite.map { |g| g.run(r) }
+        end
+      end
+
+      private
+
+      def reporter
+        @reporter ||= Oncall::Reporter.new
+      end
+
+      def suite
+        []
+      end
+
     end
   end
 end

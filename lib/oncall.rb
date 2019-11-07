@@ -10,6 +10,7 @@ module Oncall
   require_relative 'oncall/cli'
   require_relative 'oncall/options'
   require_relative 'oncall/invocations'
+  require_relative 'oncall/reporter'
   require_relative 'oncall/version'
 
   class << self
