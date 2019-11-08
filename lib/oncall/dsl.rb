@@ -21,13 +21,13 @@ module Oncall
     private
 
     def group(name=nil, &block)
-      return reporter.empty_group(file) unless block_given?
+      return reporter.empty_group(self) unless block_given?
 
       instance_exec &block
     end
 
     def get(path, &block)
-      return reporter.empty_call(file, path) unless block_given?
+      return reporter.empty_call(self) unless block_given?
 
       @request = Net::HTTP::Get.new(path)
       @response = http.request(request)
@@ -39,8 +39,7 @@ module Oncall
 
     def status(expected)
       result = response.code == expected.to_s
-
-      reporter.status(result)
+      reporter.status(self, result)
     end
   end
 end
