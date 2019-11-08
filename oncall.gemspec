@@ -5,9 +5,14 @@ Gem::Specification.new do |s|
   s.version      = Oncall::VERSION
   s.license      = 'MIT'
   s.summary      = "BDD for JSON API's"
-  s.description  = ""
+  s.description  = "BDD for JSON API's"
   s.authors      = ['Koen Woortman']
   s.email        = 'koensw@outlook.com'
+  s.homepage     = 'https://github.com/koenwoortman/oncall'
+  s.metadata     = {
+    'bug_tracker_uri' => 'https://github.com/koenwoortman/oncall/issues',
+  }
+
   s.executables  = ['oncall']
   s.require_path = 'lib'
   s.files        = Dir[
