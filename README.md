@@ -6,11 +6,11 @@
 
 #### Install
 ```
-gem install oncall
+$ gem install oncall
 ```
 
 
-### Table of content
+#### Table of content
 
 * [Get started](#get-started)
 * [Usage](#usage)
@@ -21,6 +21,37 @@ gem install oncall
 
 ## Get started
 
+Initialize
+```
+$ oncall --init
+```
+
+Add tests
+```
+group :user do
+  header 'Content-Type' => 'application/json'
+
+  schema = {
+    'type' => 'object',
+    'required' => ['foo'],
+    'properties' => {
+      'foo' => { 'type' => 'string' }
+    }
+  }
+
+  param id: 1
+
+  get '/users/:id' do
+    status 200
+    validate schema
+  end
+end
+```
+
+Run them
+```
+$ oncall
+```
 
 ## Usage
 
@@ -36,3 +67,4 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## Acknowledgments
 
 *  Inspired by [rspec](https://github.com/rspec/rspec).
+*  And using [Ruby JSON Schema Validator](https://github.com/ruby-json-schema/json-schema).
