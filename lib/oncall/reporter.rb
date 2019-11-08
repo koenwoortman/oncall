@@ -5,6 +5,7 @@ module Oncall
     attr_accessor :results
 
     def initialize
+      @messages = []
       @start_time = nil
       @end_time = nil
       @results = {
@@ -34,13 +35,25 @@ module Oncall
       report_empty_call
     end
 
-    def status(test_case, result)
+    def status(test_case, result, expected)
       if result
         add_success
         report_success
       else
         add_failed
         report_failure
+        @messages << "Expected status: #{expected}"
+      end
+    end
+
+    def json_schema(test_case, result, expected)
+      if result
+        add_success
+        report_success
+      else
+        add_failed
+        report_failure
+        @messages << "JSON schema didn't match:\n#{expected}"
       end
     end
 
@@ -90,9 +103,10 @@ module Oncall
       @end_time = Time.now
 
       puts "\n\n"
+      puts @messages
 
       elapsed_seconds = (@end_time.to_f - @start_time.to_f).to_f
-      puts "Finished in #{elapsed_seconds.round(4)} seconds"
+      puts "\nFinished in #{elapsed_seconds.round(4)} seconds"
 
       result = "#{@results[:success]} passed.\n#{@results[:failed]} failed.\n#{@results[:warn]} warnings.\n#{@results[:skipped]} skipped.\n"
 

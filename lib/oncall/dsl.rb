@@ -37,9 +37,18 @@ module Oncall
 
     def post(path, &block); end
 
+    def header(key_value); end
+
+    def param(key_value); end
+
+    def validate(expected)
+      result = JSON::Validator.validate(expected, @response.body)
+      reporter.json_schema(self, result, expected)
+    end
+
     def status(expected)
       result = response.code == expected.to_s
-      reporter.status(self, result)
+      reporter.status(self, result, expected)
     end
   end
 end
