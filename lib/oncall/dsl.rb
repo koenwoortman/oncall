@@ -18,6 +18,10 @@ module Oncall
       @request = nil
     end
 
+    def to_s
+      file
+    end
+
     private
 
     def group(name=nil, &block)
@@ -29,17 +33,44 @@ module Oncall
     def get(path, &block)
       return reporter.empty_call(self) unless block_given?
 
-      @request = Net::HTTP::Get.new(path)
+      uri = Oncall.uri(path, @params)
+      @request = Net::HTTP::Get.new(uri)
+
+      @headers.each do |key, value|
+        @request[key] = value
+      end
+
       @response = http.request(request)
 
       instance_exec &block
     end
 
-    def post(path, &block); end
+    def post(path, &block)
+      return reporter.empty_call(self) unless block_given?
 
-    def header(key_value); end
+      uri = Oncall.uri(path, @params)
+      @request = Net::HTTP::Post.new(uri)
 
-    def param(key_value); end
+      @headers.each do |key, value|
+        @request[key] = value
+      end
+
+      @response = http.request(request)
+
+      instance_exec &block
+    end
+
+    def header(key_value)
+      key_value.each do |key, value|
+        @headers[key] = value
+      end
+    end
+
+    def param(key_value)
+      key_value.each do |key, value|
+        @params[key] = value
+      end
+    end
 
     def validate(expected)
       result = JSON::Validator.validate(expected, @response.body)

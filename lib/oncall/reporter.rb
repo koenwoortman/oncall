@@ -42,7 +42,7 @@ module Oncall
       else
         add_failed
         report_failure
-        @messages << "Expected status: #{expected}"
+        @messages << "#{test_case.to_s}: Expected status: #{expected}"
       end
     end
 
@@ -53,7 +53,7 @@ module Oncall
       else
         add_failed
         report_failure
-        @messages << "JSON schema didn't match:\n#{expected}"
+        @messages << "#{test_case.to_s}: JSON schema didn't match:\n#{expected}"
       end
     end
 
