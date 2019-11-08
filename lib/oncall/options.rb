@@ -10,7 +10,7 @@ module Oncall
                   :path
 
     def initialize
-      @env = nil
+      @env = 'develop'
       @pattern = '**{,/*/**}/*_oncall.rb'
       @exclude = ''
       @group = nil

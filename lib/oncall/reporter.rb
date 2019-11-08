@@ -9,6 +9,18 @@ module Oncall
       end
     end
 
+    def empty_group(file_name)
+      puts 'Empty file'
+    end
+
+    def empty_call(path, file_name)
+      puts 'Empty call in file'
+    end
+
+    def status(result)
+      puts 'call with status'
+    end
+
     private
 
     def start
