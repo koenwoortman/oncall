@@ -44,6 +44,10 @@ module Oncall
       end
     end
 
+    def success?
+      @results[:failed].zero?
+    end
+
     private
 
     def add_success
@@ -76,10 +80,6 @@ module Oncall
 
     def report_empty_call
       puts '*'
-    end
-
-    def success?
-      @results[:failed].zero?
     end
 
     def start

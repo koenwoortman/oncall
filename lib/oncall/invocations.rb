@@ -38,6 +38,8 @@ module Oncall
         reporter.report do |r|
           suite.map { |g| g.run(r) }
         end
+
+        reporter.success? ? 0 : 1
       end
 
       private
