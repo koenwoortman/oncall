@@ -8,6 +8,7 @@ require 'json-schema'
 # Oncall
 module Oncall
   require_relative 'oncall/cli'
+  require_relative 'oncall/dsl'
   require_relative 'oncall/options'
   require_relative 'oncall/invocations'
   require_relative 'oncall/test_file'
