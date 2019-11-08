@@ -67,19 +67,19 @@ module Oncall
     end
 
     def report_success
-      puts '.'
+      print '.'
     end
 
     def report_failure
-      puts 'F'
+      print 'F'
     end
 
     def report_empty_group
-      puts 'W'
+      print 'W'
     end
 
     def report_empty_call
-      puts '*'
+      print '*'
     end
 
     def start
