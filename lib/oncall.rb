@@ -9,6 +9,7 @@ require 'json-schema'
 module Oncall
   require_relative 'oncall/cli'
   require_relative 'oncall/dsl'
+  require_relative 'oncall/http'
   require_relative 'oncall/options'
   require_relative 'oncall/invocations'
   require_relative 'oncall/test_file'
@@ -21,19 +22,5 @@ module Oncall
 
   def self.options
     @options ||= Oncall::Options.new
-  end
-
-  def self.uri(path, params)
-    parts = path.split('/')
-    return '/' if parts.empty?
-
-    parts.each_with_index do |part, index|
-      if part.start_with?(':')
-        part[0] = ''
-        parts[index] = params[part.to_sym]
-      end
-    end
-
-    parts.join('/')
   end
 end

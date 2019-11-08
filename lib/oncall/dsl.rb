@@ -33,7 +33,7 @@ module Oncall
     def get(path, &block)
       return reporter.empty_call(self) unless block_given?
 
-      uri = Oncall.uri(path, @params)
+      uri = Oncall::HTTP.uri(path, @params)
       @request = Net::HTTP::Get.new(uri)
 
       @headers.each do |key, value|
@@ -48,7 +48,7 @@ module Oncall
     def post(path, &block)
       return reporter.empty_call(self) unless block_given?
 
-      uri = Oncall.uri(path, @params)
+      uri = Oncall::HTTP.uri(path, @params)
       @request = Net::HTTP::Post.new(uri)
 
       @headers.each do |key, value|
