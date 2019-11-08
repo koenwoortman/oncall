@@ -47,9 +47,25 @@ module Oncall
       end
 
       def suite
-        []
+        files = []
+
+        test_files.each do |file|
+          test_file = Oncall::TestFile.new(file)
+          files << test_file
+        end
+
+        files
       end
 
+      def test_files
+        matched_files = Dir.glob(options.pattern)
+        excluded_files = Dir.glob(options.exclude)
+        matched_files - excluded_files
+      end
+
+      def options
+        Oncall.options
+      end
     end
   end
 end

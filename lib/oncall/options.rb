@@ -11,8 +11,8 @@ module Oncall
 
     def initialize
       @env = nil
-      @pattern = nil
-      @exclude = nil
+      @pattern = '**{,/*/**}/*_oncall.rb'
+      @exclude = ''
       @group = nil
       @persist = nil
       @config = nil
