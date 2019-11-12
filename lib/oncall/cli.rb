@@ -14,13 +14,14 @@ module Oncall
 
     def run
       parse
-
+      
       begin
         status = options.runner.run($stderr, $stdout)
-        exit(status) if status.is_a? Integer
       rescue Exception => e
         abort "#{Oncall::SCRIPT}: #{e.message}"
       end
+
+      exit(status) if status.is_a? Integer
     end
 
     private
