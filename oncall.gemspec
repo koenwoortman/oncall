@@ -10,7 +10,7 @@ Gem::Specification.new do |s|
   s.email        = 'koensw@outlook.com'
   s.homepage     = 'https://github.com/koenwoortman/oncall'
   s.metadata     = {
-    'bug_tracker_uri' => 'https://github.com/koenwoortman/oncall/issues',
+    'bug_tracker_uri' => 'https://github.com/koenwoortman/oncall/issues'
   }
 
   s.executables  = ['oncall']

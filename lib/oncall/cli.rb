@@ -14,7 +14,7 @@ module Oncall
 
     def run
       parse
-      
+
       begin
         status = options.runner.run($stderr, $stdout)
       rescue Exception => e
