@@ -1,12 +1,5 @@
 module Oncall
   class DSL
-    private
-
-    attr_accessor :response, :request
-    attr_reader :reporter, :file, :http
-
-    public
-
     def initialize(file, reporter)
       @reporter = reporter
       @file = file
@@ -24,14 +17,14 @@ module Oncall
 
     private
 
-    def group(name=nil, &block)
-      return reporter.empty_group(self) unless block_given?
+    def group(_name=nil, &block)
+      return @reporter.empty_group(self) unless block_given?
 
       instance_exec &block
     end
 
     def get(path, &block)
-      return reporter.empty_call(self) unless block_given?
+      return @reporter.empty_call(self) unless block_given?
 
       uri = Oncall::HTTP.uri(path, @params)
       @request = Net::HTTP::Get.new(uri)
@@ -40,7 +33,7 @@ module Oncall
         @request[key] = value
       end
 
-      @response = http.request(request)
+      @response = @http.request(@request)
 
       instance_exec &block
     end
@@ -55,7 +48,7 @@ module Oncall
         @request[key] = value
       end
 
-      @response = http.request(request)
+      @response = @http.request(@request)
 
       instance_exec &block
     end
@@ -74,12 +67,12 @@ module Oncall
 
     def validate(expected)
       result = JSON::Validator.validate(expected, @response.body)
-      reporter.json_schema(self, result, expected)
+      @reporter.json_schema(self, result, expected)
     end
 
     def status(expected)
-      result = response.code == expected.to_s
-      reporter.status(self, result, expected)
+      result = @response.code == expected.to_s
+      @reporter.status(self, result, expected)
     end
   end
 end
