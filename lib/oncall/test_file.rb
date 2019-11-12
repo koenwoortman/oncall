@@ -7,7 +7,7 @@ module Oncall
     end
 
     def run(reporter)
-      Oncall::DSL.new(file, reporter).instance_eval File.read(file)
+      Oncall::DSL.new(self, reporter).instance_eval File.read(file)
     end
   end
 end

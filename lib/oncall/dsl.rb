@@ -3,16 +3,13 @@ module Oncall
     def initialize(file, reporter)
       @reporter = reporter
       @file = file
-      @http = Net::HTTP.new('localhost', 4567)
-      @headers = { 'User-Agent' => "oncall/#{Oncall::VERSION}" }
+      @http = nil
+      @headers = {}
       @params = {}
-      @query = {}
-      @response = nil
-      @request = nil
     end
 
     def to_s
-      file
+      @file
     end
 
     private
@@ -26,14 +23,8 @@ module Oncall
     def get(path, &block)
       return @reporter.empty_call(self) unless block_given?
 
-      uri = Oncall::HTTP.uri(path, @params)
-      @request = Net::HTTP::Get.new(uri)
-
-      @headers.each do |key, value|
-        @request[key] = value
-      end
-
-      @response = @http.request(@request)
+      @http = Oncall::HTTP.new(path, headers: @headers, params: @params)
+      @http.get
 
       instance_exec &block
     end
@@ -41,14 +32,8 @@ module Oncall
     def post(path, &block)
       return reporter.empty_call(self) unless block_given?
 
-      uri = Oncall::HTTP.uri(path, @params)
-      @request = Net::HTTP::Post.new(uri)
-
-      @headers.each do |key, value|
-        @request[key] = value
-      end
-
-      @response = @http.request(@request)
+      @http = Oncall::HTTP.new(path, headers: @headers, params: @params)
+      @http.post
 
       instance_exec &block
     end
@@ -66,12 +51,12 @@ module Oncall
     end
 
     def validate(expected)
-      result = JSON::Validator.validate(expected, @response.body)
+      result = JSON::Validator.validate(expected, @http.response_body)
       @reporter.json_schema(self, result, expected)
     end
 
     def status(expected)
-      result = @response.code == expected.to_s
+      result = @http.response_code == expected.to_s
       @reporter.status(self, result, expected)
     end
   end
