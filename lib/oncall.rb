@@ -20,6 +20,8 @@ module Oncall
     attr_writer :options
   end
 
+  SCRIPT = 'oncall'
+
   def self.options
     @options ||= Oncall::Options.new
   end
