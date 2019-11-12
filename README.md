@@ -66,5 +66,5 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## Acknowledgments
 
-*  Inspired by [rspec](https://github.com/rspec/rspec).
-*  And using [Ruby JSON Schema Validator](https://github.com/ruby-json-schema/json-schema).
+*  Inspired by [RSpec](https://github.com/rspec/rspec).
+*  Uses [Ruby JSON Schema Validator](https://github.com/ruby-json-schema/json-schema).
