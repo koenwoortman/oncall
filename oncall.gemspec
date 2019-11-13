@@ -27,6 +27,6 @@ Gem::Specification.new do |s|
   s.add_dependency 'json-schema', '2.8.1'
 
   s.add_development_dependency 'json', '2.2.0'
-  s.add_development_dependency 'rspec'
+  s.add_development_dependency 'rspec', '3.9.0'
   s.add_development_dependency 'sinatra', '2.0.7'
 end

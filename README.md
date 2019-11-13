@@ -1,5 +1,6 @@
 # 🤙 Oncall
 
+[![Build Status](https://travis-ci.org/koenwoortman/oncall.svg?branch=master)](https://travis-ci.org/koenwoortman/oncall)
 [![Gem Version](https://badge.fury.io/rb/oncall.svg)](https://badge.fury.io/rb/oncall)
 
 > Oncall is a DSL for testing JSON API's.
