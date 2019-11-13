@@ -5,7 +5,7 @@
 > Oncall is a DSL for testing JSON API's.
 
 #### Install
-```
+```sh
 $ gem install oncall
 ```
 
@@ -22,12 +22,12 @@ $ gem install oncall
 ## Get started
 
 Initialize
-```
+```sh
 $ oncall --init
 ```
 
 Add tests
-```
+```ruby
 group :user do
   header 'Content-Type' => 'application/json'
 
@@ -49,7 +49,7 @@ end
 ```
 
 Run them
-```
+```sh
 $ oncall
 ```
 
