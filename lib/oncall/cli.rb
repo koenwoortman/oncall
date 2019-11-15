@@ -3,7 +3,7 @@ module Oncall
   class CLI
     attr_reader :args, :options
 
-    def initialize(args, options=Oncall.options)
+    def initialize(args, options = Oncall.options)
       @args = args
       @options = options
     end
@@ -36,11 +36,11 @@ module Oncall
 
     def option_parser
       OptionParser.new do |opt|
-        opt.on('--env ENV', String) do |env|
+        opt.on('--env ENV', String, 'Specify the environment to test against') do |env|
           options.env= env
         end
 
-        opt.on('--path PATH', String) do |path|
+        opt.on('--path PATH', String, 'Set the path for finding tests') do |path|
           options.path= path
         end
 
@@ -52,11 +52,11 @@ module Oncall
           options.exclude= pattern
         end
 
-        opt.on('--group GROUP', String) do |group|
+        opt.on('--group GROUP', String, 'Filter tests by group') do |group|
           options.group= group
         end
 
-        opt.on('--persist PATH', String) do |path|
+        opt.on('--persist PATH', String, 'Write output to a file instead of $stdout') do |path|
           options.persist= path
         end
 
@@ -72,6 +72,10 @@ module Oncall
         # opt.on('--console', '') do
         #   options.runner= Oncall::Invocations::ConsoleRunner.new
         # end
+
+        opt.on('--verbose', 'Increases the verbosity level for a more detailed output') do
+          options.verbose= true
+        end
 
         opt.on('--version', 'Display the version') do
           options.runner= Oncall::Invocations::VersionRunner.new
