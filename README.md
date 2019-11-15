@@ -56,6 +56,21 @@ $ oncall
 
 ## Usage
 
+```
+Usage: oncall [options]
+        --env ENV                    Specify the environment to test against
+        --path PATH                  Set the path for finding tests
+        --pattern PATTERN            Load files matching pattern
+        --exclude PATTERN            Exclude files matching pattern
+        --group GROUP                Filter tests by group
+        --persist PATH               Write output to a file instead of $stdout
+        --config PATH                Path to the config file
+        --init                       Initialize your project with Oncall
+        --verbose                    Increases the verbosity level for a more detailed output
+        --version                    Display the version
+        --help                       This help message
+```
+
 
 ## Configuration
 

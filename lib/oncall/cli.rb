@@ -60,7 +60,7 @@ module Oncall
           options.persist= path
         end
 
-        opt.on('--config PATH', String) do |path|
+        opt.on('--config PATH', String, 'Path to the config file') do |path|
           options.config= path
         end
 
