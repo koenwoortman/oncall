@@ -4,7 +4,7 @@ module Oncall
 
     def initialize(path, **opts)
       @path = path
-      @client = Net::HTTP.new('localhost', 4567)
+      @client = Net::HTTP.new(Oncall.options.host, Oncall.options.port)
       @headers = opts[:headers] || { 'User-Agent' => "#{Oncall::SCRIPT}/#{Oncall::VERSION}" }
       @params = opts[:params] || {}
       @query = opts[:query] || {}

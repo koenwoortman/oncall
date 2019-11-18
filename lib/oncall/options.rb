@@ -7,7 +7,7 @@ module Oncall
                   :persist,
                   :path,
                   :verbose,
-                  :domain,
+                  :host,
                   :port
 
     def initialize
@@ -18,7 +18,7 @@ module Oncall
       @persist = nil
       @path = nil
       @verbose = default_verbosity
-      @domain = default_host
+      @host = default_host
       @port = default_port
     end
 
