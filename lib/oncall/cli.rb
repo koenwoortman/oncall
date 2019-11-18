@@ -13,7 +13,8 @@ module Oncall
     end
 
     def run
-      parse
+      parse_cli_options
+      load_config_file
 
       begin
         status = options.runner.run($stderr, $stdout)
@@ -26,7 +27,13 @@ module Oncall
 
     private
 
-    def parse
+    def load_config_file
+      options.parse_config
+    rescue Exception => e
+      abort "#{Oncall::SCRIPT}: #{e.message}"
+    end
+
+    def parse_cli_options
       option_parser.parse!(args)
     rescue OptionParser::InvalidOption => e
       abort "#{Oncall::SCRIPT}: #{e.message}\nPlease use --help for a listing of valid options"
