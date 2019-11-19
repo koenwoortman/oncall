@@ -17,8 +17,8 @@ module Oncall
   require_relative 'oncall/invocations/init_runner'
   require_relative 'oncall/invocations/test_runner'
   require_relative 'oncall/invocations/version_runner'
-  require_relative 'oncall/test_file'
   require_relative 'oncall/reporter'
+  require_relative 'oncall/scenario'
   require_relative 'oncall/version'
 
   class << self

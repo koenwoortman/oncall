@@ -16,14 +16,14 @@ module Oncall
       end
 
       def suite
-        files = []
+        suite = []
 
         test_files.each do |file|
-          test_file = Oncall::TestFile.new(file)
-          files << test_file
+          scenario = Oncall::Scenario.new(file)
+          suite << scenario
         end
 
-        files
+        suite
       end
 
       def test_files

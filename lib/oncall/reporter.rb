@@ -16,6 +16,16 @@ module Oncall
       }
     end
 
+    def unreadable_file(scenario)
+      # TODO
+      puts "Unreadable scenario: #{scenario}"
+    end
+
+    def invalid_scenario(scenario)
+      # TODO
+      puts "Invalid scenario: #{scenario}"
+    end
+
     def report
       start
       begin
